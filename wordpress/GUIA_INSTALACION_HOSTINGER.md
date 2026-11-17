@@ -150,3 +150,17 @@ Notas:
 3. Regenerar el Secret de PayPal despuÃ©s de configurarlo.
 4. Reemplazar el NIT de referencia por el NIT real cuando la organizaciÃ³n lo tenga.
 5. Dominio definitivo, si despuÃ©s se decide migrar desde el subdominio.
+
+## 14. Despliegue desde Git (opción A)
+
+- Repositorio: privado (GitHub o GitLab). Rama de producción: main.
+- Ruta versionada: wp-content/themes/tortumar-child/.
+- En hPanel (Git), conectar el repositorio y configurar la carpeta de destino:
+  public_html/wp-content/themes/tortumar-child. Revisar la ruta exacta del subdominio antes de activar el despliegue automático.
+- Cada commit en main publica el tema. El núcleo de WordPress, plugins, pedidos, donaciones y uploads no pasan por Git.
+- Antes de cada despliegue: respaldo de la base de datos y de wp-content/uploads desde el complemento de respaldos.
+- Para revertir: git revert <commit> y hacer push; Hostinger vuelve a desplegar.
+- El tema hijo requiere el tema oficial **Twenty Twenty-Five** instalado en WordPress.
+- Después de activar el tema: en **Apariencia > Editor**, verificar que el encabezado y el pie se vean como el prototipo.
+- Páginas de WordPress a crear (con los nombres de la sección 8): galeria, creadores, 	ienda, carrito, contacto. Los slugs deben coincidir con los enlaces del encabezado.
+- El carrito y el pago de la tienda los maneja WooCommerce. El script 	ienda.js del prototipo **no** se usa en WordPress.
