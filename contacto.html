@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — TortuMar SV</title>
+<meta name="description" content="Escríbenos para consultas, pedidos, donaciones o voluntariado con TortuMar SV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img src="img/logo.jpg" alt="Logo TortuMar SV">TortuMar SV</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="index.html#mision">Nosotros</a></li>
+      <li><a href="index.html#ciclo">El ciclo</a></li>
+      <li><a href="index.html#programas">Programas</a></li>
+      <li><a href="index.html#impacto">Impacto</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="creadores.html">Creadores</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tienda.html#carrito" class="cart-link">Carrito (<span id="cartCount">0</span>)</a>
+      <a href="index.html#participar" class="nav-cta">Donar</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="section-kicker">Escríbenos</p>
+      <h1>Contacto</h1>
+      <p>¿Tienes una consulta, un pedido, una donación o quieres ser voluntario? Envíanos tu mensaje.</p>
+    </div>
+  </section>
+
+  <section class="band-ocean" style="padding-top:56px;">
+    <div class="wrap contact-grid">
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="nombre">Nombre completo *</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="correo">Correo electrónico *</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" required>
+            <span class="error" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="telefono">Teléfono (opcional)</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="7000-0000">
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="asunto">Asunto *</label>
+            <select id="asunto" name="asunto" required>
+              <option value="">Selecciona una opción</option>
+              <option value="consulta">Consulta general</option>
+              <option value="pedido">Pedido de productos</option>
+              <option value="adopcion">Adopta una tortuga</option>
+              <option value="donacion">Donación</option>
+              <option value="voluntariado">Voluntariado</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="error" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" name="mensaje" required></textarea>
+          <span class="error" aria-live="polite"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar consulta</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="contact-info">
+        <h3>Correo</h3>
+        <p>TortuMar SV. Escríbenos desde el formulario y te responderemos por correo.</p>
+        <h3>Atención</h3>
+        <p>Lunes a sábado, de 8:00 a. m. a 6:00 p. m.<br>Canal de WhatsApp Business disponible para pedidos y coordinación de entregas.</p>
+        <h3>Envíos</h3>
+        <p>Entregas a domicilio en todo El Salvador. El total es el precio del producto más el envío, y el pago puede ser con PayPal o contra entrega.</p>
+        <h3>Redes</h3>
+        <p>Instagram · TikTok · Facebook</p>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">TortuMar SV</p>
+        <p>Organización salvadoreña dedicada a la protección de las tortugas marinas y a la limpieza de las playas donde anidan.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html#mision">Nosotros</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="creadores.html">Creadores</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto y redes</h4>
+        <ul>
+          <li><a href="contacto.html">Formulario de contacto</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TortuMar SV. El Salvador.</span>
+      <span>Cada ola cuenta, cada tortuga importa.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibo de donación {{numero_recibo}} — TortuMar SV</title>
+<style>
+  :root{
+    --ocean: #1B4F72;
+    --ocean-deep: #0E2F45;
+    --turtle: #3E8E62;
+    --sand: #F3E9D2;
+    --ink: #1F2D3A;
+    --muted: #5A6876;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: #E9EDF1;
+    font-family: 'Work Sans', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .page{
+    max-width: 780px;
+    margin: 24px auto;
+    background: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(14,47,69,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .header{
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+    color: #FFFFFF;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .header-brand{ display: flex; align-items: center; gap: 16px; }
+  .header-brand img{ width: 68px; height: 68px; border-radius: 50%; background: #FFFFFF; object-fit: cover; object-position: center 35%; }
+  .header-brand h1{ margin: 0; font-size: 22px; font-family: 'Montserrat', Arial, sans-serif; }
+  .header-brand p{ margin: 2px 0 0; font-size: 12px; opacity: 0.85; }
+  .receipt-tag{ text-align: right; font-size: 12px; }
+  .receipt-tag strong{ display: block; font-size: 17px; letter-spacing: 0.02em; }
+  .body{ padding: 30px 36px; }
+  .title{
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 18px;
+    color: var(--ocean-deep);
+    margin: 0 0 4px;
+  }
+  .subtitle{ margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+  table{ width: 100%; border-collapse: collapse; }
+  th, td{ text-align: left; padding: 11px 10px; border-bottom: 1px solid #E4E9ED; vertical-align: top; }
+  th{ width: 36%; color: var(--ocean-deep); font-weight: 600; background: #F7F9FB; }
+  .concept{ background: var(--sand); border-left: 4px solid var(--turtle); padding: 14px 16px; margin: 22px 0; border-radius: 4px; }
+  .concept h2{ margin: 0 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ocean-deep); }
+  .concept p{ margin: 0; }
+  .amount{ text-align: right; margin-top: 18px; }
+  .amount span{ display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .amount strong{ font-family: 'Montserrat', Arial, sans-serif; font-size: 30px; color: var(--turtle); }
+  .thanks{ margin: 26px 0 0; font-style: italic; color: var(--ocean); text-align: center; }
+  .signature{ margin-top: 34px; display: flex; justify-content: space-between; gap: 30px; font-size: 12px; color: var(--muted); }
+  .signature div{ flex: 1; border-top: 1px solid #B9C5CE; padding-top: 6px; }
+  .footer{
+    background: #F7F9FB;
+    padding: 16px 36px;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+  @media print{
+    body{ background: #FFFFFF; }
+    .page{ box-shadow: none; margin: 0; max-width: none; border-radius: 0; }
+  }
+  @media (max-width: 600px){
+    .header{ flex-direction: column; align-items: flex-start; padding: 22px; }
+    .receipt-tag{ text-align: left; }
+    .body{ padding: 22px; }
+    th{ width: 42%; }
+    .signature{ flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  Plantilla del recibo de donación de TortuMar SV.
+  Los campos {{...}} los reemplaza el plugin de donaciones (GiveWP) o el responsable de donaciones.
+  Lista de campos:
+    {{numero_recibo}}  Número correlativo del recibo (ej. DON-2026-0001)
+    {{fecha}}          Fecha de la donación
+    {{donante}}        Nombre completo del donante
+    {{correo}}         Correo del donante
+    {{telefono}}       Teléfono del donante (opcional)
+    {{monto}}          Monto donado en USD (ej. $25.00)
+    {{concepto}}       Concepto de la donación (ver nota abajo)
+    {{forma_pago}}     PayPal / Tarjeta / Transferencia
+    {{referencia}}     Identificador de transacción de PayPal
+    {{nit}}            NIT o registro fiscal de TortuMar SV (pendiente de confirmar)
+-->
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-brand">
+      <img src="../../img/logo.jpg" alt="Logo TortuMar SV">
+      <div>
+        <h1>TortuMar SV</h1>
+        <p>Conservación y protección marina · El Salvador</p>
+      </div>
+    </div>
+    <div class="receipt-tag">
+      Recibo de donación
+      <strong>{{numero_recibo}}</strong>
+      Fecha: {{fecha}}
+    </div>
+  </div>
+
+  <div class="body">
+    <h2 class="title">Recibo de donación voluntaria</h2>
+    <p class="subtitle">Este recibo acredita la donación recibida por TortuMar SV. Conserve este documento para sus registros.</p>
+
+    <table>
+      <tr><th>Donante</th><td>{{donante}}</td></tr>
+      <tr><th>Correo electrónico</th><td>{{correo}}</td></tr>
+      <tr><th>Teléfono</th><td>{{telefono}}</td></tr>
+      <tr><th>Forma de pago</th><td>{{forma_pago}}</td></tr>
+      <tr><th>Referencia de transacción</th><td>{{referencia}}</td></tr>
+      <tr><th>NIT / registro de la organización</th><td>{{nit}}</td></tr>
+    </table>
+
+    <div class="concept">
+      <h2>Concepto de la donación</h2>
+      <p>{{concepto}}</p>
+    </div>
+
+    <div class="amount">
+      <span>Monto donado</span>
+      <strong>{{monto}}</strong>
+    </div>
+
+    <p class="thanks">Gracias por unirte a la protección de las tortugas marinas. Cada ola cuenta, cada tortuga importa.</p>
+
+    <div class="signature">
+      <div>Responsable de donaciones<br>TortuMar SV</div>
+      <div>Sello de la organización</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    TortuMar SV · Donación voluntaria. Este recibo no constituye comprobante fiscal salvo que la organización lo indique expresamente.<br>
+    Correo de contacto: mediante el formulario de la página web · © 2026 TortuMar SV, El Salvador
+  </div>
+
+</div>
+
+</body>
+</html>

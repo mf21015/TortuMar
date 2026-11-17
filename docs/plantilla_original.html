@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tortumar — Conservación de tortugas marinas en El Salvador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #0B2027;
+    --night-2: #0F2C34;
+    --sand: #F2ECDD;
+    --sand-dim: #C9C2AD;
+    --amber: #C17817;
+    --amber-bright: #E0973A;
+    --tide: #2D6E7E;
+    --coral: #8A3B2B;
+    --serif: 'Fraunces', serif;
+    --sans: 'Work Sans', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--night);
+    color: var(--sand);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg{ max-width:100%; display:block; }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--amber-bright);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    background: rgba(11,32,39,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(242,236,221,0.08);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 0;
+  }
+  .brand{
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .brand .dot{ color: var(--amber-bright); }
+  .navlinks{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+    margin:0; padding:0;
+    font-size: 0.95rem;
+  }
+  .navlinks a{ text-decoration:none; opacity:0.85; }
+  .navlinks a:hover{ opacity:1; color: var(--amber-bright); }
+  .nav-cta{
+    background: var(--amber);
+    color: var(--night);
+    padding: 9px 18px;
+    border-radius: 3px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.92rem;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ background: var(--amber-bright); }
+  .menu-toggle{ display:none; background:none; border:none; color:var(--sand); font-size:1.6rem; cursor:pointer; }
+
+  @media (max-width: 820px){
+    .navlinks{
+      position:absolute;
+      top:100%; left:0; right:0;
+      background: var(--night-2);
+      flex-direction:column;
+      padding: 20px 32px;
+      gap: 18px;
+      border-bottom: 1px solid rgba(242,236,221,0.08);
+      display:none;
+    }
+    .navlinks.open{ display:flex; }
+    .menu-toggle{ display:block; }
+    .nav-cta{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding: 96px 0 70px;
+    background:
+      radial-gradient(ellipse 700px 380px at 82% -10%, rgba(224,151,58,0.16), transparent 60%),
+      linear-gradient(180deg, var(--night) 0%, #0A1B21 100%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .eyebrow-line{
+    font-size: 0.95rem;
+    color: var(--sand-dim);
+    margin: 0 0 18px;
+    max-width: 30ch;
+  }
+  h1.hero-title{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    margin: 0 0 24px;
+    max-width: 14ch;
+  }
+  h1.hero-title em{
+    font-style: italic;
+    color: var(--amber-bright);
+  }
+  .hero-sub{
+    max-width: 46ch;
+    color: var(--sand-dim);
+    font-size: 1.08rem;
+    margin: 0 0 32px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block;
+    padding: 13px 26px;
+    border-radius: 3px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.98rem;
+    border: 1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{ background: var(--amber); color: var(--night); }
+  .btn-primary:hover{ background: var(--amber-bright); }
+  .btn-ghost{ border-color: rgba(242,236,221,0.35); color: var(--sand); background:transparent; }
+  .btn-ghost:hover{ border-color: var(--sand); }
+
+  .hero-art{ position:relative; }
+  .hero-art svg{ width:100%; height:auto; }
+
+  /* moon glow pulse - the one orchestrated motion moment */
+  .moon{
+    animation: moonrise 2.4s ease-out both;
+    transform-origin: center;
+  }
+  @keyframes moonrise{
+    from{ opacity:0; transform: translateY(24px) scale(0.92); }
+    to{ opacity:1; transform: translateY(0) scale(1); }
+  }
+  .wave-line{
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: drawwave 2.6s 0.3s ease-out forwards;
+  }
+  @keyframes drawwave{ to{ stroke-dashoffset:0; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .moon, .wave-line{ animation: none; stroke-dashoffset:0; opacity:1; transform:none; }
+  }
+
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:340px; margin:0 auto 12px; }
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 88px 0; }
+  .section-head{
+    max-width: 58ch;
+    margin-bottom: 52px;
+  }
+  .section-kicker{
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--amber-bright);
+    font-size: 1.1rem;
+    margin: 0 0 10px;
+  }
+  h2{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin: 0 0 16px;
+    line-height:1.2;
+  }
+  .section-head p{ color: var(--sand-dim); font-size:1.05rem; margin:0; }
+
+  .divider{
+    height:1px;
+    background: linear-gradient(90deg, rgba(242,236,221,0.16), transparent);
+    border:none;
+    margin:0;
+  }
+
+  /* ---------- Mission (asymmetric two column) ---------- */
+  .mission{ background: var(--night-2); }
+  .mission-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+  }
+  .mission-figure{
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    color: var(--amber);
+    line-height:1;
+    margin:0 0 6px;
+  }
+  .mission-figure + p{ color: var(--sand-dim); font-size:0.95rem; max-width: 24ch; margin:0; }
+  .mission-stats{ display:flex; flex-direction:column; gap:34px; margin-top:8px; }
+  .mission-copy p{ margin: 0 0 20px; color: var(--sand); font-size: 1.06rem; max-width: 56ch; }
+  .mission-copy p:last-child{ margin-bottom:0; }
+
+  @media (max-width: 820px){
+    .mission-grid{ grid-template-columns:1fr; gap:36px; }
+  }
+
+  /* ---------- Cycle timeline (sequence is real, so numbered here) ---------- */
+  .cycle{ position:relative; }
+  .cycle-track{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position:relative;
+  }
+  .cycle-track::before{
+    content:"";
+    position:absolute;
+    top: 22px;
+    left: 6%;
+    right: 6%;
+    height:1px;
+    background: rgba(242,236,221,0.18);
+  }
+  .cycle-step{ position:relative; padding-right: 24px; }
+  .cycle-num{
+    width:44px; height:44px;
+    border-radius:50%;
+    background: var(--night);
+    border: 1px solid var(--amber);
+    color: var(--amber-bright);
+    font-family: var(--serif);
+    font-size:1.1rem;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:2;
+    margin-bottom: 20px;
+  }
+  .cycle-step h3{
+    font-family: var(--sans);
+    font-weight:600;
+    font-size:1.02rem;
+    margin: 0 0 8px;
+    color: var(--sand);
+  }
+  .cycle-step p{ color: var(--sand-dim); font-size:0.94rem; margin:0; }
+
+  @media (max-width: 820px){
+    .cycle-track{ grid-template-columns:1fr; gap:32px; }
+    .cycle-track::before{ display:none; }
+  }
+
+  /* ---------- Programs ---------- */
+  .programs-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .program-row{
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(242,236,221,0.1);
+    align-items:baseline;
+  }
+  .programs-list .program-row:last-child{ border-bottom: 1px solid rgba(242,236,221,0.1); }
+  .program-tag{
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--tide-light, #6FB6C4);
+    font-size: 1.15rem;
+  }
+  .program-row h3{
+    font-family: var(--sans);
+    font-size: 1.18rem;
+    font-weight:600;
+    margin: 0 0 8px;
+  }
+  .program-row p{ color: var(--sand-dim); margin:0; max-width: 62ch; }
+
+  @media (max-width: 700px){
+    .program-row{ grid-template-columns:1fr; gap:8px; }
+  }
+
+  /* ---------- Impact numbers ---------- */
+  .impact{ background: var(--night-2); }
+  .impact-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .impact-card{
+    border-left: 2px solid var(--amber);
+    padding-left: 18px;
+  }
+  .impact-num{
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--sand);
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .impact-card p{ color: var(--sand-dim); font-size:0.92rem; margin:0; }
+  @media (max-width: 820px){
+    .impact-grid{ grid-template-columns: repeat(2,1fr); gap:28px 24px; }
+  }
+
+  /* ---------- Get involved ---------- */
+  .involve-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .involve-card{
+    background: var(--night-2);
+    border: 1px solid rgba(242,236,221,0.08);
+    border-radius: 4px;
+    padding: 30px 26px;
+  }
+  .involve-card h3{
+    font-family: var(--serif);
+    font-weight:500;
+    font-size:1.3rem;
+    margin: 0 0 12px;
+  }
+  .involve-card p{ color: var(--sand-dim); font-size:0.95rem; margin:0 0 20px; }
+  .involve-card a{
+    font-weight:600;
+    font-size:0.92rem;
+    text-decoration:none;
+    color: var(--amber-bright);
+  }
+  .involve-card a:hover{ text-decoration:underline; }
+  @media (max-width: 820px){ .involve-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Store teaser ---------- */
+  .store{
+    background: linear-gradient(135deg, var(--tide) 0%, var(--night) 78%);
+    border-radius: 6px;
+    padding: 56px;
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .store h2{ margin-bottom:14px; }
+  .store p{ color: rgba(242,236,221,0.85); max-width:48ch; margin:0 0 26px; }
+  .store-items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.86rem;
+  }
+  .store-chip{
+    border:1px solid rgba(242,236,221,0.35);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--sand);
+  }
+  @media (max-width: 820px){
+    .store{ grid-template-columns:1fr; padding:40px 28px; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top: 1px solid rgba(242,236,221,0.1);
+    padding: 56px 0 40px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand{
+    font-family: var(--serif);
+    font-size:1.3rem;
+    margin: 0 0 12px;
+  }
+  .footer-grid p{ color: var(--sand-dim); font-size:0.92rem; max-width:34ch; margin:0; }
+  .footer-col h4{
+    font-size:0.82rem;
+    text-transform: none;
+    color: var(--sand-dim);
+    margin: 0 0 14px;
+    font-weight:600;
+  }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .footer-col a{ text-decoration:none; font-size:0.94rem; color: var(--sand); }
+  .footer-col a:hover{ color: var(--amber-bright); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.84rem;
+    color: var(--sand-dim);
+  }
+  @media (max-width: 700px){
+    .footer-grid{ grid-template-columns:1fr; gap:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="dot">●</span> Tortumar</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#mision">Misión</a></li>
+      <li><a href="#ciclo">El ciclo</a></li>
+      <li><a href="#programas">Programas</a></li>
+      <li><a href="#impacto">Impacto</a></li>
+      <li><a href="#participar">Participar</a></li>
+      <li><a href="#tienda">Tienda</a></li>
+    </ul>
+    <a href="#participar" class="nav-cta">Donar</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow-line">Una organización salvadoreña de conservación marina</p>
+        <h1 class="hero-title">Cada nido cuenta bajo la <em>misma luna</em>.</h1>
+        <p class="hero-sub">Tortumar protege los nidos de tortuga carey en las costas de El Salvador, limpia las playas donde anidan y forma comunidades que cuidan el mar como su propio hogar.</p>
+        <div class="hero-actions">
+          <a href="#participar" class="btn btn-primary">Quiero apoyar</a>
+          <a href="#mision" class="btn btn-ghost">Conocer la misión</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una tortuga marina nadando bajo la luna llena en la noche">
+          <circle class="moon" cx="360" cy="90" r="52" fill="#F2ECDD" opacity="0.95"/>
+          <circle cx="360" cy="90" r="70" fill="#E0973A" opacity="0.08"/>
+          <g opacity="0.5">
+            <circle cx="60" cy="60" r="1.6" fill="#F2ECDD"/>
+            <circle cx="120" cy="40" r="1.2" fill="#F2ECDD"/>
+            <circle cx="200" cy="30" r="1.6" fill="#F2ECDD"/>
+            <circle cx="80" cy="140" r="1.2" fill="#F2ECDD"/>
+            <circle cx="280" cy="60" r="1.2" fill="#F2ECDD"/>
+          </g>
+          <path class="wave-line" d="M0 230 Q 40 210 80 230 T 160 230 T 240 230 T 320 230 T 400 230 T 480 230" stroke="#2D6E7E" stroke-width="2" fill="none"/>
+          <path class="wave-line" d="M0 270 Q 40 250 80 270 T 160 270 T 240 270 T 320 270 T 400 270 T 480 270" stroke="#2D6E7E" stroke-width="1.4" fill="none" opacity="0.6"/>
+          <!-- turtle -->
+          <g transform="translate(90,240)">
+            <ellipse cx="90" cy="60" rx="95" ry="62" fill="#C17817"/>
+            <path d="M10 60 C40 20 140 20 170 60 C140 100 40 100 10 60 Z" fill="none" stroke="#0B2027" stroke-width="2" opacity="0.35"/>
+            <circle cx="60" cy="45" r="12" fill="#8A3B2B" opacity="0.6"/>
+            <circle cx="95" cy="35" r="10" fill="#8A3B2B" opacity="0.5"/>
+            <circle cx="120" cy="55" r="13" fill="#8A3B2B" opacity="0.55"/>
+            <circle cx="80" cy="75" r="9" fill="#8A3B2B" opacity="0.5"/>
+            <ellipse cx="-25" cy="55" rx="30" ry="14" fill="#C17817" transform="rotate(-18 -25 55)"/>
+            <ellipse cx="195" cy="30" rx="26" ry="13" fill="#C17817" transform="rotate(24 195 30)"/>
+            <ellipse cx="60" cy="105" rx="18" ry="10" fill="#C17817"/>
+            <ellipse cx="130" cy="105" rx="18" ry="10" fill="#C17817"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- MISION -->
+  <section class="mission" id="mision">
+    <div class="wrap mission-grid">
+      <div class="mission-stats">
+        <div>
+          <p class="mission-figure">1993</p>
+          <p>Especie carey clasificada en peligro crítico de extinción</p>
+        </div>
+        <div>
+          <p class="mission-figure">70</p>
+          <p>Días de incubación en los que un nido puede desaparecer sin vigilancia</p>
+        </div>
+      </div>
+      <div class="mission-copy">
+        <p class="section-kicker">Nuestra misión</p>
+        <h2>Proteger a la tortuga carey en cada etapa de su vida, y a las playas que la reciben.</h2>
+        <p>En El Salvador, las hembras carey regresan cada temporada a anidar en las mismas costas donde nacieron. Pero la recolección de huevos, la contaminación costera y la pérdida de hábitat han puesto a la especie al borde de la desaparición.</p>
+        <p>Tortumar trabaja directamente en la arena: patrullando de noche, reubicando nidos en riesgo, limpiando playas y formando a las comunidades costeras como las primeras guardianas de estos nidos.</p>
+        <p>No operamos desde una oficina. Operamos desde la orilla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CICLO -->
+  <section class="cycle" id="ciclo">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">El recorrido de un nido</p>
+        <h2>De la arena al mar abierto</h2>
+        <p>Cuatro etapas reales que atraviesa cada nido que protegemos, de principio a fin.</p>
+      </div>
+      <div class="cycle-track">
+        <div class="cycle-step">
+          <div class="cycle-num">01</div>
+          <h3>Desove</h3>
+          <p>Patrullaje nocturno para localizar nidadas recién puestas antes que los recolectores.</p>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">02</div>
+          <h3>Resguardo</h3>
+          <p>Los huevos en riesgo se trasladan a viveros protegidos, vigilados día y noche.</p>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">03</div>
+          <h3>Eclosión</h3>
+          <p>Tras unos 60-70 días, las crías emergen guiadas por el reflejo de la luna en el mar.</p>
+        </div>
+        <div class="cycle-step">
+          <div class="cycle-num">04</div>
+          <h3>Liberación</h3>
+          <p>Cada tortuguita es liberada en la misma playa, con comunidad y voluntarios presentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROGRAMAS -->
+  <section id="programas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">Cómo trabajamos</p>
+        <h2>Cuatro programas, una misma costa</h2>
+      </div>
+      <div class="programs-list">
+        <div class="program-row">
+          <span class="program-tag">Patrullaje</span>
+          <div>
+            <h3>Vigilancia nocturna de anidación</h3>
+            <p>Recorridos nocturnos en temporada alta para localizar nidos, registrar datos de cada hembra y proteger las nidadas antes del amanecer.</p>
+          </div>
+        </div>
+        <div class="program-row">
+          <span class="program-tag">Limpieza</span>
+          <div>
+            <h3>Jornadas de limpieza costera</h3>
+            <p>Limpiezas mensuales en playas de anidación, removiendo plástico y desechos que afectan a las crías en su camino al mar.</p>
+          </div>
+        </div>
+        <div class="program-row">
+          <span class="program-tag">Educación</span>
+          <div>
+            <h3>Formación comunitaria</h3>
+            <p>Talleres con familias y pescadores locales para transformar la recolección de huevos en turismo de conservación.</p>
+          </div>
+        </div>
+        <div class="program-row">
+          <span class="program-tag">Liberación</span>
+          <div>
+            <h3>Eventos abiertos de liberación</h3>
+            <p>Liberaciones públicas donde visitantes y voluntarios acompañan a las crías en sus primeros metros hacia el mar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTO -->
+  <section class="impact" id="impacto">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">Lo que hemos logrado</p>
+        <h2>El impacto se mide en crías que llegan al mar</h2>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <p class="impact-num">—</p>
+          <p>Nidos protegidos por temporada</p>
+        </div>
+        <div class="impact-card">
+          <p class="impact-num">—</p>
+          <p>Crías liberadas al mar</p>
+        </div>
+        <div class="impact-card">
+          <p class="impact-num">—</p>
+          <p>Kilómetros de costa patrullados</p>
+        </div>
+        <div class="impact-card">
+          <p class="impact-num">—</p>
+          <p>Voluntarios activos en la comunidad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PARTICIPAR -->
+  <section id="participar">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-kicker">Súmate</p>
+        <h2>Tres formas de proteger la próxima temporada de anidación</h2>
+      </div>
+      <div class="involve-grid">
+        <div class="involve-card">
+          <h3>Adopta un nido</h3>
+          <p>Apadrina simbólicamente un nido y recibe actualizaciones desde la puesta hasta la liberación de las crías.</p>
+          <a href="#tienda">Ver cómo funciona →</a>
+        </div>
+        <div class="involve-card">
+          <h3>Sé voluntario</h3>
+          <p>Súmate a los patrullajes nocturnos o a las jornadas de limpieza en las playas donde trabajamos.</p>
+          <a href="#contacto">Inscribirme →</a>
+        </div>
+        <div class="involve-card">
+          <h3>Dona</h3>
+          <p>Cada donación sostiene el resguardo de nidos, el equipo de patrullaje y los programas comunitarios.</p>
+          <a href="#contacto">Donar ahora →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIENDA -->
+  <section id="tienda">
+    <div class="wrap">
+      <div class="store">
+        <div>
+          <h2>Cada compra financia un nido protegido</h2>
+          <p>Nuestra tienda en línea reúne playeras, termos y piezas hechas con materiales recuperados en las limpiezas de playa. Sin tienda física: pedís, pagás en línea o contra entrega, y recibís en casa.</p>
+          <a href="#" class="btn btn-primary">Visitar la tienda</a>
+        </div>
+        <div class="store-items">
+          <span class="store-chip">Playeras</span>
+          <span class="store-chip">Termos</span>
+          <span class="store-chip">Bolsos tote</span>
+          <span class="store-chip">Adopta un nido</span>
+          <span class="store-chip">Joyería de vidrio de mar</span>
+          <span class="store-chip">Stickers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Tortumar</p>
+        <p>Organización salvadoreña dedicada a la protección de la tortuga carey y la limpieza de las playas donde anida.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#mision">Misión</a></li>
+          <li><a href="#programas">Programas</a></li>
+          <li><a href="#participar">Participar</a></li>
+          <li><a href="#tienda">Tienda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:hola@tortumar.org">hola@tortumar.org</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tortumar. El Salvador.</span>
+      <span>Cada ola cuenta, cada tortuga importa.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

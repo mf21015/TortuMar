@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería — TortuMar SV</title>
+<meta name="description" content="Galería de productos y servicios de TortuMar SV con causa de conservación marina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img src="img/logo.jpg" alt="Logo TortuMar SV">TortuMar SV</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="index.html#mision">Nosotros</a></li>
+      <li><a href="index.html#ciclo">El ciclo</a></li>
+      <li><a href="index.html#programas">Programas</a></li>
+      <li><a href="index.html#impacto">Impacto</a></li>
+      <li><a href="galeria.html" aria-current="page">Galería</a></li>
+      <li><a href="creadores.html">Creadores</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tienda.html#carrito" class="cart-link">Carrito (<span id="cartCount">0</span>)</a>
+      <a href="index.html#participar" class="nav-cta">Donar</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="section-kicker">Productos y servicios</p>
+      <h1>Galería de imágenes</h1>
+      <p>Conoce los artículos y experiencias que financian la protección de nidos, la limpieza de playas y la educación ambiental. Haz clic en una imagen para verla completa.</p>
+    </div>
+  </section>
+
+  <section class="band-light" style="padding-top:56px;">
+    <div class="wrap">
+      <div class="gallery-grid">
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/camisas.jpg" data-alt="Camiseta TortuMar SV Trabajo comunitario y conservación">
+            <img src="img/camisas.jpg" alt="Camiseta TortuMar SV con diseño de tortugas y playa al atardecer" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Camisetas y hoodies</h3>
+            <p>Prendas casuales con diseños de tortugas y frases de conservación marina.</p>
+            <span class="gallery-price">Desde $15.00</span>
+          </div>
+        </article>
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/termo.jpg" data-alt="Termo reutilizable TortuMar SV Patrullaje nocturno">
+            <img src="img/termo.jpg" alt="Termo reutilizable de acero con logo de TortuMar SV" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Botellas y termos reutilizables</h3>
+            <p>Llevan el logo de TortuMar SV y ayudan a evitar botellas PET desechables.</p>
+            <span class="gallery-price">$14.00</span>
+          </div>
+        </article>
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/bolso.jpg" data-alt="Bolso tote de tela TortuMar SV">
+            <img src="img/bolso.jpg" alt="Bolso tote de tela con ilustración de tortuga y materiales de playa" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Bolsos tote reutilizables</h3>
+            <p>Tela resistente para el día a día o para tus viajes a la costa.</p>
+            <span class="gallery-price">$8.00</span>
+          </div>
+        </article>
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/artesanias.jpg" data-alt="Pulsera de vidrio de mar reciclado">
+            <img src="img/artesanias.jpg" alt="Pulsera artesanal con vidrio de mar y placa Playas limpias" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Joyería artesanal de vidrio de mar</h3>
+            <p>Piezas hechas con vidrio recuperado en las jornadas de limpieza de playa.</p>
+            <span class="gallery-price">$10.00</span>
+          </div>
+        </article>
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/adopcion.jpg" data-alt="Kit Adopta un nido">
+            <img src="img/adopcion.jpg" alt="Ilustración de la adopción simbólica de un nido de tortuga" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Adopta una tortuga</h3>
+            <p>Certificado digital, foto de la tortuguita liberada, un sticker y actualizaciones por correo.</p>
+            <span class="gallery-price">$20.00</span>
+          </div>
+        </article>
+
+        <article class="gallery-item">
+          <button type="button" data-lightbox data-src="img/Banner.jpg" data-alt="Tortuga marina nadando bajo la luna llena">
+            <img src="img/Banner.jpg" alt="Tortuga marina nadando bajo la luna llena" loading="lazy">
+          </button>
+          <div class="gallery-body">
+            <h3>Campaña de conservación</h3>
+            <p>Imagen de la campaña: cada ola cuenta, cada tortuga importa.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<dialog id="lightbox" class="lightbox">
+  <button type="button" class="lightbox-close" aria-label="Cerrar">✕</button>
+  <img src="" alt="">
+</dialog>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">TortuMar SV</p>
+        <p>Organización salvadoreña dedicada a la protección de las tortugas marinas y a la limpieza de las playas donde anidan.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html#mision">Nosotros</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="creadores.html">Creadores</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto y redes</h4>
+        <ul>
+          <li><a href="contacto.html">Formulario de contacto</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">WhatsApp Business</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TortuMar SV. El Salvador.</span>
+      <span>Cada ola cuenta, cada tortuga importa.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
